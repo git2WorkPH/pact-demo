@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:consumer": "mocha consumer.spec.js"
+    "test":"npm run test:consumer &&  npm run test:provider",
+    "test:consumer": "mocha consumer.spec.js",
+    "test:provider": "node verify-provider.js"
   },
   "keywords": [],
   "author": "",
