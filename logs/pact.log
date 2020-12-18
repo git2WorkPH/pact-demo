@@ -1,0 +1,65 @@
+I, [2020-12-18T11:30:01.986623 #26141]  INFO -- : Registered expected interaction GET /orders
+D, [2020-12-18T11:30:01.987000 #26141] DEBUG -- : {
+  "description": "a request for orders",
+  "providerState": "there are orders",
+  "request": {
+    "method": "GET",
+    "path": "/orders"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+    },
+    "body": {
+      "json_class": "Pact::ArrayLike",
+      "contents": {
+        "id": 1,
+        "items": {
+          "json_class": "Pact::ArrayLike",
+          "contents": {
+            "name": "burger",
+            "quantity": 2,
+            "value": 100
+          },
+          "min": 1
+        }
+      },
+      "min": 1
+    }
+  },
+  "metadata": null
+}
+I, [2020-12-18T11:30:01.996433 #26141]  INFO -- : Received request GET /orders
+D, [2020-12-18T11:30:01.996554 #26141] DEBUG -- : {
+  "path": "/orders",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "Host": "localhost:3002",
+    "Connection": "close",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2020-12-18T11:30:01.996963 #26141]  INFO -- : Found matching response for GET /orders
+D, [2020-12-18T11:30:01.997073 #26141] DEBUG -- : {
+  "status": 200,
+  "headers": {
+  },
+  "body": {
+    "json_class": "Pact::ArrayLike",
+    "contents": {
+      "id": 1,
+      "items": {
+        "json_class": "Pact::ArrayLike",
+        "contents": {
+          "name": "burger",
+          "quantity": 2,
+          "value": 100
+        },
+        "min": 1
+      }
+    },
+    "min": 1
+  }
+}
+I, [2020-12-18T11:30:02.004350 #26141]  INFO -- : Writing pact for OrderApi to /Users/christophercervantes/Documents/tutorial_workspace/pact-demo/pacts/orderclient-orderapi.json

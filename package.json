@@ -1,0 +1,16 @@
+{
+  "name": "pact-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:consumer": "mocha consumer.spec.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@pact-foundation/pact": "^9.13.0",
+    "mocha": "^8.2.1"
+  }
+}
