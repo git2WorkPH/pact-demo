@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test":"npm run test:consumer &&  npm run test:provider",
-    "test:consumer": "mocha consumer.spec.js",
-    "test:provider": "node verify-provider.js"
+    "test":"npm run ctest &&  npm run ptest",
+    "ctest": "mocha consumer.spec.js",
+    "ptest": "node verify-provider.js"
   },
   "keywords": [],
   "author": "",
