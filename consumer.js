@@ -5,7 +5,7 @@ async function fetchOrders(){
 
    return new Promise((resolve, reject) => {
         http
-          .get('http://localhost:3002/orders', (resp) => {
+          .get('http://localhost:30026/orders', (resp) => {
             let data = ''
   
             resp.on('data', (chunk) => {

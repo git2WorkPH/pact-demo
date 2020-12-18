@@ -2,13 +2,18 @@ const path = require('path')
 const { Verifier } = require('@pact-foundation/pact')
 const { startServer } = require('./provider')
 
-startServer(3002, async (server) => {
-  console.log('Server is running on http://localhost:3002')
+startServer(30026, async (server) => {
+  console.log('Server is running on http://localhost:30026')
 
   try {
     await new Verifier({
-      providerBaseUrl: 'http://localhost:3002',
+      providerBaseUrl: 'http://localhost:30026',
       pactUrls: [path.resolve(__dirname, './pacts/orderclient-orderapi.json')],
+      pactBrokerUrl:'http://localhost:30026/',
+      consumerVersion:'1.0.0',
+      publishVerificationResult:true,
+      providerVersion:'1.0.0',
+      logLevel:'info'
     }).verifyProvider()
   } catch (error) {
     console.error('Error: ' + error.message)

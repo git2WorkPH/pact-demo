@@ -7,10 +7,11 @@ const { eachLike } = Matchers
 
 describe('Pact with Order API', () => {
   const provider = new Pact({
-    port: 3002,
+    port: 30026,
     consumer: 'OrderClient',
     provider: 'OrderApi',
     spec:1,
+    logLevel:'info'
   })
   
   before(() => provider.setup())
@@ -21,7 +22,7 @@ describe('Pact with Order API', () => {
 
     const interaction =  provider.addInteraction({
             state: 'there are orders',
-              uponReceiving: 'a request for orders',
+            uponReceiving: 'a request for orders',
             withRequest: {
               path: '/orders',
               method: 'GET',
@@ -50,4 +51,6 @@ describe('Pact with Order API', () => {
       assert.ok(result.length)
     })
   })
+
+ 
 })

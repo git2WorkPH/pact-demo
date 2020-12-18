@@ -1,5 +1,5 @@
 const {startServer} = require('./provider')
 
-startServer(3002,function(){
+startServer(30026,function(){
     console.log('Server is running')
 })
