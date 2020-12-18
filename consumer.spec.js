@@ -21,7 +21,7 @@ describe('Pact with Order API', () => {
 
     const interaction =  provider.addInteraction({
             state: 'there are orders',
-            uponReceiving: 'a request for orders',
+              uponReceiving: 'a request for orders',
             withRequest: {
               path: '/orders',
               method: 'GET',

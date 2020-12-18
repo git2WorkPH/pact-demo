@@ -2,7 +2,7 @@ const path = require('path')
 const { Verifier } = require('@pact-foundation/pact')
 const { startServer } = require('./provider')
 
-startServer(8080, async (server) => {
+startServer(3002, async (server) => {
   console.log('Server is running on http://localhost:3002')
 
   try {
