@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test":"npm run ctest &&  npm run ptest",
+    "test": "npm run ctest &&  npm run ptest",
     "ctest": "mocha consumer.spec.js",
     "ptest": "node verify-provider.js"
   },
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@pact-foundation/pact": "^9.13.0",
+    "chai": "^4.2.0",
     "mocha": "^8.2.1"
   }
 }

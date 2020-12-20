@@ -5,18 +5,18 @@ const server = http.createServer(async (req, res) => {
   const route = url.parse(req.url).pathname
 
   try {
-    if (route === '/orders') {
+    if (route === '/get-users') {
       const orders = [
         {
           id: 1,
-          items: [
-            {
-              name: 'burger',
-              quantity: 2,  
-              value: 100,
-            },
-          ],
+          firstName:'John',
+          lastName:'Doe',
         },
+        {
+          id:2,
+          firstName:'Roger',
+          lastName:'Miller'
+        }
       ]
       res.setHeader('Content-Type', 'application/json')
       res.end(JSON.stringify(orders))

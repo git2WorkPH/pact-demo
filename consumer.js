@@ -1,11 +1,11 @@
 const http = require('http')
 
 
-async function fetchOrders(){
+async function GetUsers(){
 
    return new Promise((resolve, reject) => {
         http
-          .get('http://localhost:30026/orders', (resp) => {
+          .get('http://localhost:30026/get-users', (resp) => {
             let data = ''
   
             resp.on('data', (chunk) => {
@@ -24,4 +24,4 @@ async function fetchOrders(){
       })
 }
 
-module.exports = {fetchOrders}
+module.exports = {GetUsers}
