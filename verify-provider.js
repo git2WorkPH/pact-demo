@@ -8,8 +8,8 @@ startServer(30026, async (server) => {
   try {
     await new Verifier({
       providerBaseUrl: 'http://localhost:30026',
-      pactUrls: [path.resolve(__dirname, './pacts/orderclient-orderapi.json')],
-      pactBrokerUrl:'http://localhost:30026/',
+      pactUrls: [path.resolve(__dirname, './pacts contract/consumer-get-usersapi.json')],
+      pactBrokerUrl:'http://localhost/',
       consumerVersion:'1.0.0',
       publishVerificationResult:true,
       providerVersion:'1.0.0',

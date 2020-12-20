@@ -1,18 +1,19 @@
 
 PACT / Contract testing overview:
 
-contract testing are used to defined the interaction between consumer and provider API. 
-Both party must meet the requirements set out in the contract. 
+Contract testing are used to defined the interaction between consumer and provider API. 
+Both party must meet the requirements set out in the contract. Contract testing ensures two
+services to communicate without the need for integration testing.
 
 Benefits of PACT/Contract testing:
 
 - reliable
 - fast
 - relieve issues with version control. 
-When you have changes to request model or response model. With contract testing you can always go back and verify with the current working version.
+  When you have changes to request model or response model. With contract testing you can always go back to versions that were working  previously and verify with the current working version.
 
-Framework Comparison:
- 
+PACT Framework: is an open source project for contract testing that supports to numerous platform such as Ruby, Javascript, Python and others through its sets of libraries.
+
 @pact/foundation/pact
 
 Implementation guide:
@@ -21,18 +22,69 @@ Step 1: Install the required npm packages. Use the command below
 
 npm i @pact-foundation/pact@latest
 npm i mocha@latest
+npm i chai@latest
 
-Step 2: Create the Consumer Test 
-    - Mock the provider using Pact
-    - Create an interaction
-        - setup expected Request
-        - setup expected Response
-    - Send request to the mock provider
-    - verify Request
-    - Generate contract
+Step 2: Setup consumer test
 
-Step 3: Setup Provider Test 
-    - 
+ 2.1 Setup a mock provider using Pack
+
+===== Setup mock provider sample =========
+
+ const provider = new Pact({
+    port: 30026,
+    consumer: 'consumer name',
+    provider: '<provider name>',
+    spec:< version>,
+    logLevel:'info',
+    log:path.resolve(process.cwd(),'<folder name>','<log filename>.log'),
+    dir: path.resolve(process.cwd(),'<pact contract folder>'),
+  })
+
+ 2.2 Setup interaction and Create test
+
+==== Sample interaction ========
+    const interaction =  provider.addInteraction({
+            state: 'looking for users',
+            uponReceiving: 'a request for get-users',
+            withRequest: {
+              path: '/get-users',
+              method: 'GET',
+            },
+            willRespondWith: {
+              headers:{
+                'Content-Type':'application/json',
+              },
+              body: eachLike({
+                id: 1,
+                firstName:'John',
+                lastName:'Doe'
+              }),
+              status: 200,
+            },
+          })
+
+      return interaction
+    })
+
+    ===== Sample test========
+     it('will receive the list of users', async () => {
+      const result = await GetUsers()
+      chai.expect(result.length).to.gt(0)
+    })
+  })
+
+
+Step 3: Verify the generated contract:
+
+     await new Verifier({
+      providerBaseUrl: 'http://localhost:30026',
+      pactUrls: [<>],
+      pactBrokerUrl:'http://localhost/',
+      consumerVersion:'1.0.0',
+      publishVerificationResult:true,
+      providerVersion:'1.0.0',
+      logLevel:'info'
+    }).verifyProvider()
 
 
 Example:

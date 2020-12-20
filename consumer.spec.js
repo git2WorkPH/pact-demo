@@ -1,30 +1,34 @@
-const assert = require('assert')
+const path = require('path')
+const chai = require('chai')
 const { Pact, Matchers } = require('@pact-foundation/pact')
-const { fetchOrders } = require('./consumer')
+const { GetUsers } = require('./consumer')
+const { log } = require('console')
 const { eachLike } = Matchers
 
 
 
 describe('Pact with Order API', () => {
+
   const provider = new Pact({
     port: 30026,
-    consumer: 'OrderClient',
-    provider: 'OrderApi',
+    consumer: 'consumer',
+    provider: 'get-usersapi',
     spec:1,
-    logLevel:'info'
+    logLevel:'info',
+    log:path.resolve(process.cwd(),'pact logs','pact.log'),
+    dir:path.resolve(process.cwd(),'pacts contract')
   })
   
   before(() => provider.setup())
   after(() => provider.finalize())
-
   describe('when a call to the API is made', () => {
     before(async () => {
 
     const interaction =  provider.addInteraction({
-            state: 'there are orders',
-            uponReceiving: 'a request for orders',
+            state: 'looking for users',
+            uponReceiving: 'a request for get-users',
             withRequest: {
-              path: '/orders',
+              path: '/get-users',
               method: 'GET',
             },
             willRespondWith: {
@@ -33,11 +37,8 @@ describe('Pact with Order API', () => {
               },
               body: eachLike({
                 id: 1,
-                items: eachLike({
-                  name: 'burger',
-                  quantity: 2,
-                  value: 100,
-                }),
+                firstName:'John',
+                lastName:'Doe'
               }),
               status: 200,
             },
@@ -46,9 +47,9 @@ describe('Pact with Order API', () => {
       return interaction
     })
 
-    it('will receive the list of current orders', async () => {
-      const result = await fetchOrders()
-      assert.ok(result.length)
+    it('will receive the list of users', async () => {
+      const result = await GetUsers()
+      chai.expect(result.length).to.gt(0)
     })
   })
 
