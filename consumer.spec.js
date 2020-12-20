@@ -49,7 +49,8 @@ describe('Pact with Order API', () => {
 
     it('will receive the list of users', async () => {
       const result = await GetUsers()
-      chai.expect(result.length).to.gt(0)
+      chai.expect(result.length).to.equal(1)
+      chai.expect(result[0].firstName).to.equal('John')
     })
   })
 
