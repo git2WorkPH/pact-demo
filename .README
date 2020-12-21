@@ -14,7 +14,14 @@ Benefits of PACT/Contract testing:
 
 PACT Framework: is an open source project for contract testing that supports to numerous platform such as Ruby, Javascript, Python and others through its sets of libraries.
 
-@pact/foundation/pact
+Example:
+
+Password reset test:
+Use cases:
+1. you need to call passwordReset endPoint where you pass `email`
+2. user will click the password reset button from email
+3. 
+
 
 Implementation guide:
 
@@ -41,6 +48,9 @@ Step 2: Setup consumer test
   })
 
  2.2 Setup interaction and Create test
+
+  2.2.1. setup expect request
+  2.2.2. setup expect response
 
 ==== Sample interaction ========
     const interaction =  provider.addInteraction({
@@ -85,14 +95,6 @@ Step 3: Verify the generated contract:
       providerVersion:'1.0.0',
       logLevel:'info'
     }).verifyProvider()
-
-
-Example:
-
-Password reset test:
-Use cases:
-1. you need to call passwordReset endPoint where you pass email
-2. 
 
 
 Reference: 
